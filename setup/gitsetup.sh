@@ -1,4 +1,4 @@
-#!/bin/sh bash
+#!/bin/zsh
 
 echo
 echo "Let's configure git..."
@@ -12,3 +12,8 @@ read email
 git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global color.ui true
+
+echo
+echo "✅ Git configuration complete!"
+echo "User:  $(git config --global user.name)"
+echo "Email: $(git config --global user.email)"

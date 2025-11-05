@@ -1,9 +1,7 @@
-#!/bin/sh bash
+#!/bin/zsh
 
-
-# needed vars
-processor_brand="$(/usr/sbin/sysctl -n machdep.cpu.brand_string)"
-
+# set script's directory so sources are reliable
+SCRIPT_DIR="${0:A:h}"
 
 clear
 echo
@@ -15,40 +13,59 @@ echo "| | | | \__ \ || (_| | | |_\__ \ | | |"
 echo "|_|_| |_|___/\__\__,_|_|_(_)___/_| |_|"
 echo
 echo
-echo Please enter root password
+
+if [[ "$(uname -m)" != "arm64" ]]; then
+  echo "Warning: this script was written with Apple silicon in mind."
+fi
 
 # ask for the administrator password upfront.
+echo Please enter root password
 sudo -v
 
 echo
 echo "Setting up your Mac..."
 echo
 
+# innstall Rosetta
+if ! /usr/bin/pgrep oahd >/dev/null 2>&1; then
+  echo "Installing Rosetta 2 (optional but recommended for some apps)…"
+  softwareupdate --install-rosetta --agree-to-license || true
+fi
+
 # check for and install homebrew as well as any dependencies and desired packages
-source ./setup/brew.sh
+echo "Installing Homebrew packages..."
+source "${SCRIPT_DIR}/setup/brew.sh"
 
 # configure terminal by installing ohmyzsh and powerlevel10k theme
-source ./setup/terminal.sh
+echo "Setting up your terminal..."
+source "${SCRIPT_DIR}/setup/terminal.sh"
 
 # load macOS preferences
-source ./setup/macos
+echo "Importing your MacOS preferences..."
+source "${SCRIPT_DIR}/setup/macos"
 
 # replace dock apps
-source ./setup/dock.sh
+echo "Setting your desired dock..."
+source "${SCRIPT_DIR}/setup/dock.sh"
 
 # restore mackup backup
 # echo
 # echo "Restoring your mackup backup..."
 # echo
-# cp ./setup/mackup.cfg $HOME/.mackup.cfg
+# cp "${SCRIPT_DIR}/setup/mackup.cfg $HOME/.mackup.cfg"
 # mackup restore
 
 # install dotfiles with dotbot
 echo
 echo "Restoring dotfiles with dotbot..."
 echo
-git clone https://github.com/cjmvincent/dotfiles.git $HOME/.dotfiles
-cd $HOME/.dotfiles
+DOTDIR="${HOME}/.dotfiles"
+if [[ -d "${DOTDIR}/.git" ]]; then
+  git -C "${DOTDIR}" pull --rebase
+else
+  git clone https://github.com/cjmvincent/dotfiles.git "${DOTDIR}"
+fi
+cd "${DOTDIR}"
 ./install
 
 
@@ -60,10 +77,7 @@ echo "| |/ /\ \_/ / |\  || |___ "
 echo "|___/  \___/\_| \_/\____/ "
 
 echo
-echo -n "Do you want to reboot the system? [y/N]"
-read REPLY
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+read -r "REPLY?Do you want to reboot the system? [y/N] "
+if [[ "$REPLY" =~ ^[Yy]$ ]]; then
   sudo reboot
-else
-  exit
 fi

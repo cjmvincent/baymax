@@ -1,19 +1,42 @@
-#!/bin/sh bash
+#!/bin/zsh
 
 echo
 echo "Configuring your terminal..."
 echo
 
 # install oh-my-zsh
-if test ! $(which omz); then
+if [[ ! -d "${ZSH:-$HOME/.oh-my-zsh}" ]]; then
+  echo "Installing Oh My Zsh (non-interactive)…"
+  export RUNZSH=no CHSH=no KEEP_ZSHRC=yes
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+else
+  echo "Oh My Zsh already installed. Updating…"
+  # Update without sourcing user rc files
+  git -C "${ZSH:-$HOME/.oh-my-zsh}" pull --rebase --autostash || true
 fi
 
 # install Powerlevel10k
 #git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # install a couple of zsh plugins
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+ZSH_HIGHLIGHT_DIR="${ZSH_CUSTOM_DIR}/plugins/zsh-syntax-highlighting"
+if [[ ! -d "${ZSH_HIGHLIGHT_DIR}/.git" ]]; then
+  echo "Installing zsh-syntax-highlighting…"
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_HIGHLIGHT_DIR}"
+else
+  echo "Updating zsh-syntax-highlighting…"
+  git -C "${ZSH_HIGHLIGHT_DIR}" pull --rebase --autostash || true
+fi
 
-# remaining changes will take place when dotfiles are installed either via mackup or dotbot
+ZSH_AUTOSUGGEST_DIR="${ZSH_CUSTOM_DIR}/plugins/zsh-autosuggestions"
+if [[ ! -d "${ZSH_AUTOSUGGEST_DIR}/.git" ]]; then
+  echo "Installing zsh-autosuggestions…"
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_AUTOSUGGEST_DIR}"
+else
+  echo "Updating zsh-autosuggestions…"
+  git -C "${ZSH_AUTOSUGGEST_DIR}" pull --rebase --autostash || true
+fi
+
+echo
+echo "Terminal setup complete. Plugins and theme are installed/updated."
+echo "Your dotfiles (via dotbot) should enable them in .zshrc."
