@@ -6,14 +6,8 @@ This workflow is to automate the configuration my personal macOS installations. 
 
 ## Installation
 
-**Warning**: I recommend you fork and review the code first, before giving these dotfiles a try. Make sure to install the Xcode Command Line Tools by running
-`xcode-select --install` first. As well as logging into iCloud and the Apple App Store.
+**Warning**: I recommend you fork and review the code first, before giving these dotfiles a try.
 
-Ideally you should be cloning the repo into your home directory as that's where my scripts will being referring to 🤖:
-
-    git clone http://github.com/cjmvincent/baymax.git && cd baymax && sudo sh ./install.sh
-
-That's about it, I think... I'm sure as time passes, and I learn more things, this repo will evolve.
 
 ## What's included
 
