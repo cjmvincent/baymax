@@ -1,8 +1,6 @@
 #!/bin/zsh
 
 ARCH="$(uname -m)"
-SCRIPT_PATH=${${(%):-%x}:A}
-SCRIPT_DIR=${SCRIPT_PATH:h}
 
 echo
 echo "Installing Homebrew..."
@@ -34,7 +32,7 @@ echo
 brew update && brew upgrade
 
 # install formulae and apps from brewfile
-BREWFILE="${SCRIPT_DIR}/brewfile"
+BREWFILE="${SCRIPT_DIR}/setup/brewfile"
 if [[ -f "$BREWFILE" ]]; then
   echo "Installing formulae and casks from $BREWFILE…"
   # --no-lock avoids writing Brewfile.lock.json in your repo
