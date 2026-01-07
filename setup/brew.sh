@@ -9,7 +9,7 @@ echo "Installing Homebrew..."
 echo
 
 # Check if homebrew is installed
-if test ! $(which brew); then
+if ! command -v brew &>/dev/null; then
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   if [[ "$ARCH" == "arm64" ]]; then
