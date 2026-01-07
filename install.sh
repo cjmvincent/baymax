@@ -28,6 +28,22 @@ echo
 echo "Setting up your Mac..."
 echo
 
+# check for command line tools, but also to make sure the git dependency is met
+echo
+echo "Checking for Command Line Tools..."
+echo
+if ! xcode-select -p &>/dev/null; then
+  echo "Command Line Tools not found. Installing..."
+  xcode-select --install
+  echo
+  echo "Please complete the Command Line Tools installation in the popup window."
+  echo "Press any key once installation is complete..."
+  read -k1 -s
+else
+  echo "Command Line Tools already installed."
+fi
+
+
 # install Rosetta
 if ! /usr/bin/pgrep oahd >/dev/null 2>&1; then
   echo "Installing Rosetta 2 (optional but recommended for some apps)…"
