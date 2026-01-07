@@ -60,7 +60,7 @@ source "${SCRIPT_DIR}/setup/terminal.sh"
 
 # load macOS preferences
 echo "Importing your MacOS preferences..."
-source "${SCRIPT_DIR}/setup/macos"
+source "${SCRIPT_DIR}/setup/macos.sh"
 
 # replace dock apps
 echo "Setting your desired dock..."
