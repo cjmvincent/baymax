@@ -16,10 +16,13 @@ else
 fi
 
 # install Powerlevel10k
-#git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+#git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
+
+# Set ZSH_CUSTOM to the standard location
+ZSH_CUSTOM="${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}"
 
 # install a couple of zsh plugins
-ZSH_HIGHLIGHT_DIR="${ZSH_CUSTOM_DIR}/plugins/zsh-syntax-highlighting"
+ZSH_HIGHLIGHT_DIR="${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
 if [[ ! -d "${ZSH_HIGHLIGHT_DIR}/.git" ]]; then
   echo "Installing zsh-syntax-highlighting…"
   git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_HIGHLIGHT_DIR}"
@@ -28,7 +31,7 @@ else
   git -C "${ZSH_HIGHLIGHT_DIR}" pull --rebase --autostash || true
 fi
 
-ZSH_AUTOSUGGEST_DIR="${ZSH_CUSTOM_DIR}/plugins/zsh-autosuggestions"
+ZSH_AUTOSUGGEST_DIR="${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
 if [[ ! -d "${ZSH_AUTOSUGGEST_DIR}/.git" ]]; then
   echo "Installing zsh-autosuggestions…"
   git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_AUTOSUGGEST_DIR}"
