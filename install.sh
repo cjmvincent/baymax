@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+set -e
+
 # set script's directory so sources are reliable
 SCRIPT_DIR="${0:A:h}"
 
@@ -26,7 +28,7 @@ echo
 echo "Setting up your Mac..."
 echo
 
-# innstall Rosetta
+# install Rosetta
 if ! /usr/bin/pgrep oahd >/dev/null 2>&1; then
   echo "Installing Rosetta 2 (optional but recommended for some apps)…"
   softwareupdate --install-rosetta --agree-to-license || true
