@@ -31,15 +31,14 @@ brew 'yabai'
 brew 'borders'
 brew 'skhd'
 brew 'sketchybar'
-brew 'font-space-mono-nerd-font'
-brew 'font-hack-nerd-font'
+cask 'font-space-mono-nerd-font'
+cask 'font-hack-nerd-font'
 brew 'lsd'
 brew 'bat'
 brew 'jq'
-brew 'sf-symbols'
+cask 'sf-symbols'
 brew 'spaceman'
 brew 'starship'
-brew 'iterm2'
 
 # NetOps
 cask 'docker'
@@ -70,7 +69,8 @@ cask 'visual-studio-code'
 cask 'microsoft-office'
 cask "displaylink"
 cask 'dockdoor'
+cask 'iterm2'
 
-mas 'Hiddenbar', id: 1452453066
-# mas 'BetterSnapTool', id: 417375580 # finally switched to using yabai
-mas "Windows App", id: 1295203466 # app that replaced Microsoft Remote Desktop app
+#mas 'Hiddenbar', id: 1452453066
+#mas 'BetterSnapTool', id: 417375580 # finally switched to using yabai
+#mas "Windows App", id: 1295203466 # app that replaced Microsoft Remote Desktop app
