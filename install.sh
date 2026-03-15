@@ -66,13 +66,6 @@ source "${SCRIPT_DIR}/setup/macos.sh"
 echo "Setting your desired dock..."
 source "${SCRIPT_DIR}/setup/dock.sh"
 
-# restore mackup backup
-# echo
-# echo "Restoring your mackup backup..."
-# echo
-# cp "${SCRIPT_DIR}/setup/mackup.cfg $HOME/.mackup.cfg"
-# mackup restore
-
 # install dotfiles with dotbot
 echo
 echo "Restoring dotfiles with dotbot..."
