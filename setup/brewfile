@@ -44,6 +44,7 @@ cask 'docker'
 cask 'cyberduck'
 cask 'postman'
 cask 'github'
+brew 'tailscale'
 
 # dev
 brew 'git'
