@@ -1,9 +1,7 @@
 # taps
-tap 'homebrew/bundle'
-tap 'homebrew/cask-versions'
 tap 'homebrew/cask-fonts'
 tap 'FelixKratz/formulae'
-tap 'koekeishiya/formulae'
+tap 'asmvik/formulae'
 
 # brew formulae
 brew 'mackup'
@@ -17,15 +15,16 @@ brew 'curl'
 brew 'openssl'
 brew 'coreutils'
 brew 'moreutils'
+brew 'gnu-sed'
 brew 'findutils'
 brew 'binutils'
 brew 'dockutil'
 brew 'nmap'
-brew 'telnet'
+brew 'inetutils'
 brew 'dnstracer'
 brew 'ipcalc'
 brew 'mtr'
-brew 'speedtest-cli'
+brew 'speedtest'
 brew 'ipinfo-cli'
 brew 'yabai'
 brew 'borders'
@@ -52,6 +51,8 @@ brew 'gh'
 brew 'ruby'
 brew 'tmux'
 brew 'pipx'
+brew 'zsh-autocomplete'
+brew 'syntax-highlight'
 
 # macOS apps
 cask 'google-chrome'
@@ -67,10 +68,9 @@ cask 'synergy-core'
 cask 'karabiner-elements'
 cask 'visual-studio-code'
 cask 'microsoft-office'
-cask "displaylink"
+cask 'displaylink'
 cask 'dockdoor'
 cask 'iterm2'
 
-#mas 'Hiddenbar', id: 1452453066
-#mas 'BetterSnapTool', id: 417375580 # finally switched to using yabai
-#mas "Windows App", id: 1295203466 # app that replaced Microsoft Remote Desktop app
+mas 'Hiddenbar', id: 1452453066
+mas "Windows App", id: 1295203466 # app that replaced Microsoft Remote Desktop app
