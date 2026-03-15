@@ -19,7 +19,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Vars                                                                        #
 ###############################################################################
 
-hostname = "Baymax"
+echo "What would you like to name your device?"
+read hostname
+echo "Will name device $hostname."
 
 ###############################################################################
 # Rosetta                                                                     #
@@ -576,12 +578,13 @@ for app in "Activity Monitor" \
 	"Finder" \
 	"Google Chrome" \
 	"Mail" \
-	"Messages" \\
+	"Messages" \
 	"Photos" \
 	"Safari" \
 	"SystemUIServer" \
 	"Terminal" \
-	"iCal"; do
+	"iCal"
+do
 	killall "${app}" &> /dev/null
 done
 
